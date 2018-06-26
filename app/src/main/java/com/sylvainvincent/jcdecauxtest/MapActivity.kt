@@ -10,16 +10,14 @@ import com.google.android.gms.maps.SupportMapFragment
 import com.google.android.gms.maps.model.LatLng
 import com.google.android.gms.maps.model.MarkerOptions
 
-class MapActivity : AppCompatActivity(), OnMapReadyCallback {
-
+class MapActivity : AppCompatActivity(), OnMapReadyCallback, MapContract.View {
     private lateinit var map: GoogleMap
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-        val mapFragment = supportFragmentManager
-                .findFragmentById(R.id.map) as SupportMapFragment
-        mapFragment.getMapAsync(this)
+        init()
+
     }
 
     override fun onMapReady(googleMap: GoogleMap) {
@@ -29,5 +27,14 @@ class MapActivity : AppCompatActivity(), OnMapReadyCallback {
         map.moveCamera(CameraUpdateFactory.newLatLng(test))
         map.setMinZoomPreference(2F)
         map.setMaxZoomPreference(15F)
+    }
+
+    override fun displayCycleMarkers() {
+    }
+
+    fun init() {
+        val mapFragment = supportFragmentManager
+                .findFragmentById(R.id.map) as SupportMapFragment
+        mapFragment.getMapAsync(this)
     }
 }
