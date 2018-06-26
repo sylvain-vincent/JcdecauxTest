@@ -5,14 +5,10 @@ import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.schedulers.Schedulers
 import org.reactivestreams.Subscription
 
-abstract class BasePresenter : AppCompatActivity(), MapContract.Presenter {
+abstract class BasePresenter<V : BaseView>(protected var view: V) {
 
+    protected val isViewAttached: Boolean = view != null
 
-    override fun loadStations() {
-        val api = JcdecauxApi.create()
-
-
-    }
-
+    abstract fun detachView()
 
 }

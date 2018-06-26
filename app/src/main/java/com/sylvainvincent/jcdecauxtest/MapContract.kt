@@ -1,9 +1,11 @@
 package com.sylvainvincent.jcdecauxtest
 
+import com.sylvainvincent.jcdecauxtest.datas.Station
+
 internal interface MapContract {
 
-    interface View {
-        fun displayCycleMarkers()
+    interface View : BaseView{
+        fun displayCycleMarkers(stations: List<Station>)
     }
 
     interface Presenter {
